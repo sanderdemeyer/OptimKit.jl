@@ -4,6 +4,7 @@ using LinearAlgebra: LinearAlgebra
 using Printf
 using ScopedValues
 using VectorInterface
+using NaNMath
 using Base: @kwdef
 
 # Default values for the keyword arguments using ScopedValues
@@ -116,7 +117,7 @@ const lbfgs = LBFGS()
 export optimize, gd, cg, lbfgs, optimtest
 export GradientDescent, ConjugateGradient, LBFGS
 export FletcherReeves, HestenesStiefel, PolakRibiere, HagerZhang, DaiYuan
-export HagerZhangLineSearch
+export HagerZhangLineSearch, BackTrackingLineSearch
 
 """
     optimtest(fg, x, [d]; alpha = -0.1:0.001:0.1, retract = _retract, inner = _inner)
