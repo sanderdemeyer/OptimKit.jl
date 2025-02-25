@@ -185,9 +185,9 @@ function Base.iterate(iter::HagerZhangLineSearchIterator)
         verbosity >= 4 &&
             @info @sprintf("  Linesearch initial step: c = %.2e, dϕᶜ = %.2e, ϕᶜ - ϕ₀ = %.2e, exact wolfe = %d, approx wolfe = %d",
                            c.α, c.dϕ, c.ϕ - p₀.ϕ, ewolfe, awolfe)
-        # if ewolfe || awolfe # DEBUGGING: just always take the step...
-        return (c.x, c.f, c.∇f, c.ξ, c.α, c.dϕ), (c, c, numfg, true)
-        # end
+        if ewolfe || awolfe
+            return (c.x, c.f, c.∇f, c.ξ, c.α, c.dϕ), (c, c, numfg, true)
+        end
     else
         verbosity >= 4 &&
             @info @sprintf("  Linesearch initial step (cannot be accepted): c = %.2e, dϕᶜ = %.2e, ϕᶜ - ϕ₀ = %.2e",
@@ -395,9 +395,9 @@ function bracket(iter::HagerZhangLineSearchIterator{T}, c::LineSearchPoint) wher
             verbosity >= 4 &&
                 @info @sprintf("  Linesearch bracket step: c = %.2e, dϕᶜ = %.2e, ϕᶜ - ϕ₀ = %.2e",
                                c.α, c.dϕ, c.ϕ - p₀.ϕ)
-            # if checkexactwolfe(c, p₀, c₁, c₂) || checkapproxwolfe(c, p₀, c₁, c₂, ϵ)
-            #     return c, c, numfg
-            # end
+            if checkexactwolfe(c, p₀, c₁, c₂) || checkapproxwolfe(c, p₀, c₁, c₂, ϵ)
+                return c, c, numfg
+            end
         end
     end
 end

@@ -15,6 +15,7 @@ const LS_VERBOSITY = ScopedValue(1)
 const GRADTOL = ScopedValue(1e-8)
 const MAXITER = ScopedValue(1_000_000)
 const VERBOSITY = ScopedValue(1)
+const GROWFACOTR = ScopedValue(1.5)
 
 # Default values for the manifold structure
 _retract(x, d, α) = (add(x, d, α), d)
