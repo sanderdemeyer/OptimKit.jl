@@ -536,7 +536,7 @@ function (ls::BackTrackingLineSearch)(fg, x₀, η₀, fg₀=fg(x₀);
 
     if cancel
         # take forced step
-        α_2 = one(αinitial) / 2 # TODO: make forced step size a parameter
+        α_2 /= 2 # but be very careful...
         x, ϕx_1, g, ξ = move(α_2)
     end
 
