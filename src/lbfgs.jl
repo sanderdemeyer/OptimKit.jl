@@ -54,7 +54,8 @@ function LBFGS(m::Int=8;
                                                                    verbosity=ls_verbosity),
                scalestep::Bool=true,
                growfactor::Real=GROWFACTOR[])
-    return LBFGS(m, maxiter, gradtol, acceptfirst, verbosity, linesearch, growfactor)
+    return LBFGS(m, maxiter, gradtol, acceptfirst, verbosity, linesearch, scalestep,
+                 growfactor)
 end
 
 function optimize(fg, x, alg::LBFGS;
