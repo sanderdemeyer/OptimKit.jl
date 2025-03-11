@@ -52,7 +52,7 @@ function LBFGS(m::Int=8;
                                                                    maxiter=ls_maxiter,
                                                                    maxfg=ls_maxfg,
                                                                    verbosity=ls_verbosity),
-               scalestep::Bool=true,
+               scalestep::Bool=false,
                growfactor::Real=GROWFACTOR[])
     return LBFGS(m, maxiter, gradtol, acceptfirst, verbosity, linesearch, scalestep,
                  growfactor)
