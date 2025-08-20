@@ -83,7 +83,7 @@ function optimize(fg, x, alg::ConjugateGradient;
     fhistory = [f]
     normgradhistory = [normgrad]
     t = time() - t₀
-    _hasconverged = hasconverged(x, f, g, normgrad)
+    _hasconverged = hasconverged(x, f, g, normgradhistory)
     _shouldstop = shouldstop(x, f, g, numfg, numiter, t)
 
     # compute here once to define initial value of α in scale-invariant way
@@ -140,7 +140,7 @@ function optimize(fg, x, alg::ConjugateGradient;
         push!(fhistory, f)
         push!(normgradhistory, normgrad)
         t = time() - t₀
-        _hasconverged = hasconverged(x, f, g, normgrad)
+        _hasconverged = hasconverged(x, f, g, normgradhistory)
         _shouldstop = shouldstop(x, f, g, numfg, numiter, t)
 
         # check stopping criteria and print info

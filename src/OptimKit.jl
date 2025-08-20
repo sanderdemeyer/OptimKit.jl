@@ -32,8 +32,8 @@ _finalize!(x, f, g, numiter) = x, f, g
     gradtol::T
 end
 
-function (d::DefaultHasConverged)(x, f, g, normgrad)
-    return normgrad <= d.gradtol
+function (d::DefaultHasConverged)(x, f, g, normgradhistory)
+    return normgradhistory[end] <= d.gradtol
 end
 
 @kwdef struct DefaultShouldStop

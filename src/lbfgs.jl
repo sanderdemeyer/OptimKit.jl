@@ -76,7 +76,7 @@ function optimize(fg, x, alg::LBFGS;
     fhistory = [f]
     normgradhistory = [normgrad]
     t = time() - t₀
-    _hasconverged = hasconverged(x, f, g, normgrad)
+    _hasconverged = hasconverged(x, f, g, normgradhistory)
     _shouldstop = shouldstop(x, f, g, numfg, numiter, t)
 
     TangentType = typeof(g)
@@ -127,7 +127,7 @@ function optimize(fg, x, alg::LBFGS;
         push!(fhistory, f)
         push!(normgradhistory, normgrad)
         t = time() - t₀
-        _hasconverged = hasconverged(x, f, g, normgrad)
+        _hasconverged = hasconverged(x, f, g, normgradhistory)
         _shouldstop = shouldstop(x, f, g, numfg, numiter, t)
 
         # check stopping criteria and print info
